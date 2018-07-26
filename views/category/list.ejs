@@ -45,7 +45,7 @@
 								<tbody>
 								   <% for(var i=0; i < resultSet.length; i++) { %>
 								   <tr>
-									  <th scope="row"><%=(i+1)%></th>
+									  <td><%=(i+1)%></td>
 									  <td class="capitalize"><%=resultSet[i].category%></td>
 									  <td><%=moment(resultSet[i].createdAt).format("MMM-DD-YYYY h:m A")%></td>
 									  <td><%=moment(resultSet[i].updatedAt).format("MMM-DD-YYYY h:m A")%></td>
@@ -57,6 +57,38 @@
 									  <td class="text-center"><a href="edit/<%=resultSet[i]._id%>" style="color:#797979;" title="Edit"><i class="fa fa-pencil"></i></a></td>
 								   </tr>
 								   <% } %>
+								   <tr class="text-right">
+									   <td colspan="6">
+										   <% if (pages > 0) { %>
+												<ul class="pagination text-center">
+													<% if (current == 1) { %>
+														<li class="disabled"><a>First</a></li>
+													<% } else { %>
+														<li><a href="/admin/category/list/1">First</a></li>
+													<% } %>
+													<% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+													<% if (i !== 1) { %>
+														<li class="disabled"><a>...</a></li>
+													<% } %>
+													<% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+														<% if (i == current) { %>
+															<li class="active"><a><%= i %></a></li>
+														<% } else { %>
+															<li><a href="/admin/category/list/<%= i %>"><%= i %></a></li>
+														<% } %>
+														<% if (i == Number(current) + 4 && i < pages) { %>
+															<li class="disabled"><a>...</a></li>
+														<% } %>
+													<% } %>
+													<% if (current == pages) { %>
+														<li class="disabled"><a>Last</a></li>
+													<% } else { %>
+														<li><a href="/admin/category/list/<%= pages %>">Last</a></li>
+													<% } %>
+												</ul>
+											<% } %>
+										</td>
+								   </tr>
 								</tbody>
 							 </table>
 						  </div>

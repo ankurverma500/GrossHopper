@@ -4,22 +4,34 @@ var crypto = require("crypto");
 
 module.exports = function(app){
 	
-	app.get('/admin/category/list', isAuthenticated, function(req, res) {
+	app.get(['/admin/category/list','/admin/category/list/:page'], isAuthenticated, function(req, res) {
+	   var perPage = 10;
+       var page = req.params.page || 1;
 	   var moment = require('moment');
 	   session = req.session;
        var firstname = session.firstname;
 	   var data = [];
 	   data.title = 'List Category - Grasshopper';
 	   data.firstname = firstname;
-	   Category.find({},function(err, dataRecord) {
-			 if(err){
-				 req.flash('error','Something went wrong!');
-				 res.redirect('/admin/logout');
-			 } else {
-				console.log(dataRecord);
-				res.render('category/list', { resultSet: dataRecord,data: data, error: req.flash('error'), success: req.flash('success'),moment:moment });		 
-			 }
-		});	   
+	   
+	   Category
+		.find({})
+		.skip((perPage * page) - perPage)
+		.limit(perPage)
+		.exec(function(err, dataRecord) {
+			Category.count().exec(function(err, count) {
+				if (err) return next(err)
+				res.render('category/list', {
+					resultSet: dataRecord,
+					data: data,
+					error: req.flash('error'),
+					success: req.flash('success'),
+					moment:moment,
+					current: page,
+					pages: Math.ceil(count / perPage)
+				})
+			})
+		});  
 	});
 	
 	app.get('/admin/category/add', isAuthenticated, function(req, res) {
@@ -95,7 +107,9 @@ module.exports = function(app){
 		 }  				     
 	});
 	
-	app.get('/admin/category/listsubcat', isAuthenticated, function(req, res) {
+	app.get(['/admin/category/listsubcat','/admin/category/listsubcat/:page'], isAuthenticated, function(req, res) {
+	   var perPage = 10;
+       var page = req.params.page || 1;
 	   var moment = require('moment');
 	   session = req.session;
        var firstname = session.firstname;
@@ -115,12 +129,45 @@ module.exports = function(app){
 			}
 		},
 		{   $unwind:"$categoryDetail" }
-		]).toArray(function(err, dataRecord) {
-			if (err) throw err;
-			console.log(JSON.stringify(dataRecord));
-			res.render('category/listsubcat', { resultSet: dataRecord,data: data, error: req.flash('error'), success: req.flash('success'),moment:moment });
-			
-		});	
+		])
+		.skip((perPage * page) - perPage)
+		.limit(perPage)
+		.toArray(function(err, dataRecord) {
+			SubCategory.count().exec(function(err, count) {
+				if (err) return next(err)
+				res.render('category/listsubcat', {
+					resultSet: dataRecord,
+					data: data,
+					error: req.flash('error'),
+					success: req.flash('success'),
+					moment:moment,
+					current: page,
+					pages: Math.ceil(count / perPage)
+				})
+			})			
+		});
+
+
+		/*Category
+		.find({})
+		.skip((perPage * page) - perPage)
+		.limit(perPage)
+		.exec(function(err, dataRecord) {
+			Category.count().exec(function(err, count) {
+				if (err) return next(err)
+				res.render('category/list', {
+					resultSet: dataRecord,
+					data: data,
+					error: req.flash('error'),
+					success: req.flash('success'),
+					moment:moment,
+					current: page,
+					pages: Math.ceil(count / perPage)
+				})
+			})
+		});*/
+		
+		
 	});
 	
 	app.get('/admin/category/addsubcat', isAuthenticated, function(req, res) {
@@ -172,10 +219,45 @@ module.exports = function(app){
 			 if(err){
 				 req.flash('error','Something went wrong!');
 				 res.redirect('/admin/logout');
-			 } else {;
-				res.render('category/editsubcat', { resultSet: category, data: data, error: req.flash('error'), success: req.flash('success')}); 			 
+			 } else {
+				Category.find({}, function(err, dataCategory) {
+				 if(err){
+					 console.log(err);
+				 } else {
+					 res.render('category/editsubcat', { dataSet: dataCategory,resultSet: category, data: data, error: req.flash('error'), success: req.flash('success')});
+				 }
+			  });			 
 			 }
 		}); 				     
+	});
+	
+	app.post('/admin/category/editsubcat/:id', isAuthenticated, function(req, res) {
+		req.checkBody('categoryid', 'Required').notEmpty();
+		req.checkBody('subcategory', 'Required').notEmpty();
+		req.checkBody('status', 'Required').notEmpty();
+		var errors = req.validationErrors();
+		var id = req.body.id;
+		if (errors) {
+			req.flash('error','Please enter all the fields!');
+		    res.redirect('/admin/category/editsubcat/'+id);
+		 } else {
+			 session = req.session;
+			 SubCategory.findById(id, function(err, subcatData) {
+				 if(err){
+					 req.flash('error','Record could not be saved!');
+				     res.redirect('/admin/category/editsubcat/'+id);
+				 } else {
+					 subcatData.categoryid = req.body.categoryid;
+					 subcatData.subcategory = req.body.subcategory;
+					 subcatData.status = req.body.status;
+					 subcatData.updatedAt = Date.now();
+					 subcatData.save(function(){
+						req.flash('success','Record has been updated successfully!');
+						res.redirect('/admin/category/listsubcat');
+					 });					 				 
+				 }
+			 });
+		 }  				     
 	});
 	
 }
