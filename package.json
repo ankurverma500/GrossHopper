@@ -1,0 +1,30 @@
+{
+  "name": "grasshopper",
+  "version": "1.0.0",
+  "description": "This is the online portal to show their art world wide.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon ./bin/www",
+    "start": "node ./bin/www"
+  },
+  "author": "vimal",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "debug": "^3.1.0",
+    "ejs": "^2.6.1",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.4",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.7",
+    "serve-favicon": "^2.5.0"
+  }
+}

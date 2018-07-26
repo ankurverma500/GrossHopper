@@ -1,0 +1,60 @@
+<% layout('../layout') -%>
+<div class="content-page">
+   <!-- Start content -->
+   <div class="content">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12">
+               <div class="page-title-box">
+                  <h4 class="page-title">My Profile </h4>                  
+                  <div class="clearfix"></div>
+               </div>
+            </div>
+         </div>
+         <!-- end row -->
+         <div class="row">
+            <div class="col-sm-12">
+			<div class="card-box">
+			  <div class="row">
+				 <div class="col-lg-6">						
+					<table class="table m-0">
+						<tr>
+							<td class="tbl-td-noborder">First Name</td>
+							<td class="tbl-td-noborder"><%=dataUser.firstname%></td>
+							
+						</tr>
+						<tr>
+							<td class="tbl-td-noborder">Last Name</td>
+							<td class="tbl-td-noborder"><%=dataUser.lastname%></td>
+							
+						</tr>
+						<tr>
+							<td class="tbl-td-noborder">Full Name</td>
+							<td class="tbl-td-noborder"><%=dataUser.firstname%> <%=dataUser.lastname%></td>
+							
+						</tr>
+						<tr>
+							<td class="tbl-td-noborder">Username</td>
+							<td class="tbl-td-noborder"><%=dataUser.username%></td>
+						</tr>
+						<tr>
+							<td class="tbl-td-noborder">Email</td>
+							<td class="tbl-td-noborder"><%=dataUser.email%></td>
+						</tr>
+						<tr>
+							<td class="tbl-td-noborder">User Type</td>
+							<td class="tbl-td-noborder">Admin</td>
+						</tr>
+					</table>
+				</div>
+			  </div>
+			  </div>
+            </div>
+         </div>
+         <!-- end row -->
+      </div>
+      <!-- container -->
+   </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Right content here -->
