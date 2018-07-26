@@ -146,28 +146,6 @@ module.exports = function(app){
 				})
 			})			
 		});
-
-
-		/*Category
-		.find({})
-		.skip((perPage * page) - perPage)
-		.limit(perPage)
-		.exec(function(err, dataRecord) {
-			Category.count().exec(function(err, count) {
-				if (err) return next(err)
-				res.render('category/list', {
-					resultSet: dataRecord,
-					data: data,
-					error: req.flash('error'),
-					success: req.flash('success'),
-					moment:moment,
-					current: page,
-					pages: Math.ceil(count / perPage)
-				})
-			})
-		});*/
-		
-		
 	});
 	
 	app.get('/admin/category/addsubcat', isAuthenticated, function(req, res) {

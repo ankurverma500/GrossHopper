@@ -1,10 +1,12 @@
 <div class="left side-menu">
    <div class="sidebar-inner slimscrollleft">
       <div id="sidebar-menu">
-         <ul>            
+         <ul>       
+		 
             <li class="has_sub">
                <a href="/admin/dashboard" class="waves-effect <% if(data.title == "Dashboard - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-dashboard"></i><span>Dashboard</span> </a>
-            </li>            
+            </li> 
+			
             <li class="has_sub">
                <a href="javascript:void(0);" class="waves-effect <% if(data.title == "List Category - Grasshopper" || data.title == "Add Category - Grasshopper" || data.title == "Edit Category - Grasshopper" || data.title == "List Sub Category - Grasshopper" || data.title == "Add Sub Category - Grasshopper" || data.title == "Edit Sub Category - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-table"></i><span>Manage Category</span> <span class="menu-arrow"></span></a>
                <ul class="list-unstyled" <% if(data.title == "List Category - Grasshopper" || data.title == "Add Category - Grasshopper" || data.title == "Edit Category - Grasshopper" || data.title == "List Sub Category - Grasshopper" || data.title == "Add Sub Category - Grasshopper" || data.title == "Edit Sub Category - Grasshopper") { %>style="display: block;"<% } %>>
@@ -14,6 +16,39 @@
                   <li><a href="/admin/category/addsubcat" <% if(data.title == "Add Sub Category - Grasshopper") { %>style="color: #ffffff;"<% } %>>Add Sub Category</a></li>
                </ul>
             </li>
+			
+			<li class="has_sub">
+               <a href="javascript:void(0);" class="waves-effect <% if(data.title == "List Skills - Grasshopper" || data.title == "Add Skill - Grasshopper" || data.title == "Edit Skill - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-star"></i><span>Manage Skills</span> <span class="menu-arrow"></span></a>
+               <ul class="list-unstyled" <% if(data.title == "List Skills - Grasshopper" || data.title == "Add Skill - Grasshopper" || data.title == "Edit Skill - Grasshopper") { %>style="display: block;"<% } %>>
+                  <li><a href="/admin/skills/list" <% if(data.title == "List Skills - Grasshopper") { %>style="color: #ffffff;"<% } %>>List Skills</a></li>
+                  <li><a href="/admin/skills/add" <% if(data.title == "Add Skill - Grasshopper") { %>style="color: #ffffff;"<% } %>>Add Skill</a></li>
+               </ul>
+            </li>
+			
+			<li class="has_sub">
+               <a href="javascript:void(0);" class="waves-effect <% if(data.title == "List CMS - Grasshopper" || data.title == "Add CMS - Grasshopper" || data.title == "Edit CMS - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-list"></i><span>Manage CMS</span> <span class="menu-arrow"></span></a>
+               <ul class="list-unstyled" <% if(data.title == "List CMS - Grasshopper" || data.title == "Add CMS - Grasshopper" || data.title == "Edit CMS - Grasshopper") { %>style="display: block;"<% } %>>
+                  <li><a href="/admin/cms/list" <% if(data.title == "List CMS - Grasshopper") { %>style="color: #ffffff;"<% } %>>List CMS</a></li>
+                  <li><a href="/admin/cms/add" <% if(data.title == "Add CMS - Grasshopper") { %>style="color: #ffffff;"<% } %>>Add CMS</a></li>
+               </ul>
+            </li>
+			
+			<li class="has_sub">
+               <a href="javascript:void(0);" class="waves-effect <% if(data.title == "List FAQ - Grasshopper" || data.title == "Add FAQ - Grasshopper" || data.title == "Edit FAQ - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-question"></i><span>Manage FAQ</span> <span class="menu-arrow"></span></a>
+               <ul class="list-unstyled" <% if(data.title == "List FAQ - Grasshopper" || data.title == "Add FAQ - Grasshopper" || data.title == "Edit FAQ - Grasshopper") { %>style="display: block;"<% } %>>
+                  <li><a href="/admin/faq/list" <% if(data.title == "List FAQ - Grasshopper") { %>style="color: #ffffff;"<% } %>>List FAQ</a></li>
+                  <li><a href="/admin/faq/add" <% if(data.title == "Add FAQ - Grasshopper") { %>style="color: #ffffff;"<% } %>>Add FAQ</a></li>
+               </ul>
+            </li>
+			
+			<li class="has_sub">
+               <a href="javascript:void(0);" class="waves-effect <% if(data.title == "List Templates - Grasshopper" || data.title == "Add Template - Grasshopper" || data.title == "Edit Template - Grasshopper") { %>subdrop<% } %>"><i class="fa fa-envelope"></i><span>Email Templates</span> <span class="menu-arrow"></span></a>
+               <ul class="list-unstyled" <% if(data.title == "List Templates - Grasshopper" || data.title == "Add Template - Grasshopper" || data.title == "Edit Template - Grasshopper") { %>style="display: block;"<% } %>>
+                  <li><a href="/admin/templates/list" <% if(data.title == "List Templates - Grasshopper") { %>style="color: #ffffff;"<% } %>>List Templates</a></li>
+                  <li><a href="/admin/templates/add" <% if(data.title == "Add Template - Grasshopper") { %>style="color: #ffffff;"<% } %>>Add Template</a></li>
+               </ul>
+            </li>
+			
          </ul>
       </div>     
    </div>

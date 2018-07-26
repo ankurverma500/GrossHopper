@@ -32,3 +32,6 @@ input:-webkit-autofill:active {
 .list-page .go-btn,.add-page .go-btn,.edit-page .go-btn{    width: 66px;
     margin-right: 16px;}
 .capitalize{text-transform:capitalize;}
+#mceu_20{border:1px solid #5555553d !important;}
+.mce-flow-layout{border-bottom:1px solid #5555553d !important;}
+#mceu_40-body{border-bottom:none !important;}

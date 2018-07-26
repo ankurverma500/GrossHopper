@@ -56,11 +56,11 @@
 									  <% } else { %>
 									  <td class="text-center"><a class="btn btn-danger btn-xs act-inc">Inactive</a></td>
 									  <% } %>
-									  <td class="text-center"><a href="editsubcat/<%=resultSet[i]._id%>" style="color:#797979;" title="Edit"><i class="fa fa-pencil"></i></a></td>
+									  <td class="text-center"><a href="/admin/category/editsubcat/<%=resultSet[i]._id%>" style="color:#797979;" title="Edit"><i class="fa fa-pencil"></i></a></td>
 								   </tr>
 								   <% } %>
 								   <tr class="text-right">
-									   <td colspan="6">
+									   <td colspan="7">
 										   <% if (pages > 0) { %>
 												<ul class="pagination text-center">
 													<% if (current == 1) { %>
@@ -108,39 +108,7 @@
    </div>
 </div>
 
-<script src="/admin/js/jquery.validate.min.js"></script>
 <script>
-$.validator.setDefaults({
-	submitHandler: function() {
-		document.forms["changepass_form"].submit();
-	}
-});
-
-$("#changepass_form").validate({
-	rules: {
-		old_password: "required",
-		password: {
-			required: true,
-            minlength: 6
-		},
-		c_password: {
-			required: true,
-            equalTo: "#password"
-		}
-	},
-	messages: {
-	    old_password: "Please enter your old password!",
-		password: {
-			required: "Please enter your password!",
-            minlength: "Password should be minimum 6 length!"
-		},
-		c_password: {
-			required: "Please enter your confirm password!",
-            equalTo: "Password & Confirm password must be match!"
-		}
-	}
-});
-
 setTimeout(function(){ 
 	$(".alert").fadeOut('slow'); 
 }, 3000);

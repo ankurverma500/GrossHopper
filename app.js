@@ -32,6 +32,10 @@ app.use(validator());
 
 require('./routes/admin/index')(app);
 require('./routes/admin/category')(app);
+require('./routes/admin/skill')(app);
+require('./routes/admin/cms')(app);
+require('./routes/admin/faq')(app);
+require('./routes/admin/template')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
